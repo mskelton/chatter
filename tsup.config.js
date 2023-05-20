@@ -1,7 +1,6 @@
 import { defineConfig } from "tsup"
 
 export default defineConfig({
-  clean: true,
   entry: ["src/main.ts", "src/preload.ts"],
   format: "cjs",
   outDir: "dist",

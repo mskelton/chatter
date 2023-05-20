@@ -1,0 +1,61 @@
+/* Hide the plus badge */
+h1 > span.bg-yellow-200 {
+  display: none;
+}
+
+/* Hide the footer help text */
+div:has(> span > a[href^="https://help.openai.com"]) > span
+{
+  display: none;
+}
+
+@media (max-width: 767px) {
+  /* Update the mobile header elements to fit well in the menu with the mac controls */
+  .sticky {
+    padding-top: 0 !important;
+    padding-inline: 0.5rem !important;
+
+    & > button {
+      margin-top: 0;
+      height: 2.4rem;
+      width: 2.4rem;
+
+      &:first-child {
+        margin-left: 4rem;
+      }
+    }
+  }
+
+  /* Make the header draggable to move the window */
+  html:not([style*="overflow: hidden"]) .sticky h1 {
+    -webkit-app-region: drag;
+  }
+
+  /* Footer padding since help text is hidden */
+  div:has(> span > a[href^="https://help.openai.com"])
+  {
+    padding-block: 0.25rem;
+  }
+
+  /* Hide an element which breaks the alignment */
+  form.stretch > div > div:last-child {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  /* Larger side nav */
+  div:has(> .w-\[260px\]) {
+    &,
+    & > div {
+      width: 320px !important;
+    }
+  }
+
+  /* Footer padding since help text is hidden */
+  div:has(> span > a[href^="https://help.openai.com"])
+    & > span {
+  {
+    padding-block: 0.5rem;
+  }
+}
