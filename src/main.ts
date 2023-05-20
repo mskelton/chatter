@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from "electron"
-import fs from "node:fs"
 import path from "node:path"
 import config, { ConfigKey } from "./config.js"
+import styles from "./styles/main.css"
 
 function createWindow() {
   const lastWindowState = config.get(ConfigKey.LastWindowState)
@@ -15,7 +15,7 @@ function createWindow() {
     titleBarStyle: "hiddenInset",
     webPreferences: {
       nodeIntegration: false,
-      preload: path.join(__dirname, "preload.cjs"),
+      preload: path.join(__dirname, "preload.js"),
     },
     width: lastWindowState.bounds.width,
     x: lastWindowState.bounds.x,
@@ -33,7 +33,6 @@ function createWindow() {
   win.loadURL("https://chat.openai.com")
 
   win.webContents.on("dom-ready", async () => {
-    const styles = fs.readFileSync(path.join(__dirname, "main.css"), "utf8")
     await win.webContents.insertCSS(styles)
     win.show()
   })
@@ -50,16 +49,21 @@ function createWindow() {
   win.on("move", saveWindowState)
 }
 
-app.whenReady().then(() => {
-  createWindow()
+// This method will be called when Electron has finished initialization and is
+// ready to create browser windows. Some APIs can only be used after this event occurs.
+app.whenReady().then(createWindow)
 
-  app.on("activate", () => {
-    if (!BrowserWindow.getAllWindows().length) {
-      createWindow()
-    }
-  })
+app.on("activate", () => {
+  // On macOS it's common to re-create a window in the app when the dock icon is
+  // clicked and there are no other windows open.
+  if (!BrowserWindow.getAllWindows().length) {
+    createWindow()
+  }
 })
 
+// Quit when all windows are closed, except on macOS. There, it's common
+// for applications and their menu bar to stay active until the user quits
+// explicitly with Cmd + Q.
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
     app.quit()

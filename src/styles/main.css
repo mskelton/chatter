@@ -53,8 +53,7 @@ div:has(> span > a[href^="https://help.openai.com"]) > span
   }
 
   /* Footer padding since help text is hidden */
-  div:has(> span > a[href^="https://help.openai.com"])
-    & > span {
+  div:has(> span > a[href^="https://help.openai.com"]) > span
   {
     padding-block: 0.5rem;
   }

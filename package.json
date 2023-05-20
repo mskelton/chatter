@@ -4,29 +4,32 @@
   "description": "ChatGPT desktop app",
   "author": "Mark Skelton",
   "license": "ISC",
-  "type": "module",
+  "main": ".vite/build/main.js",
   "scripts": {
     "build": "tsup",
     "dev": "pnpm run build --watch",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "start": "electron ./dist/main.cjs"
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "dependencies": {
-    "electron": "^24.3.1",
     "electron-store": "^8.1.0",
     "electron-util": "^0.17.2"
   },
   "devDependencies": {
+    "@electron-forge/cli": "^6.1.1",
+    "@electron-forge/maker-dmg": "^6.1.1",
+    "@electron-forge/plugin-vite": "^6.1.1",
     "@mskelton/eslint-config": "^8.0.0",
     "@mskelton/tsconfig": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^5.59.6",
     "@typescript-eslint/parser": "^5.59.6",
-    "esbuild": "^0.17.19",
+    "electron": "^24.3.1",
     "eslint": "^8.41.0",
     "eslint-plugin-sort": "^2.10.0",
     "prettier": "^2.8.8",
-    "tsup": "^6.7.0",
     "typescript": "^5.0.4"
   }
 }
