@@ -8,11 +8,9 @@
   "license": "ISC",
   "main": ".vite/build/main.js",
   "scripts": {
-    "build": "tsup",
-    "dev": "pnpm run build --watch",
+    "dev": "electron-forge start",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make"
   },
@@ -27,6 +25,7 @@
     "@electron-forge/maker-dmg": "^6.1.1",
     "@electron-forge/maker-zip": "^6.1.1",
     "@electron-forge/plugin-vite": "^6.1.1",
+    "@electron-forge/publisher-github": "^6.1.1",
     "@mskelton/eslint-config": "^8.0.0",
     "@mskelton/tsconfig": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^5.59.6",
