@@ -1,4 +1,4 @@
 node_modules/
-npm-lock.yaml
+pnpm-lock.yaml
 out/
 .vite/
