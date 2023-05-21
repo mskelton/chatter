@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@electron-forge/cli': ^6.1.1
   '@electron-forge/maker-dmg': ^6.1.1
+  '@electron-forge/maker-zip': ^6.1.1
   '@electron-forge/plugin-vite': ^6.1.1
   '@mskelton/eslint-config': ^8.0.0
   '@mskelton/tsconfig': ^2.0.0
@@ -23,6 +24,7 @@ dependencies:
 devDependencies:
   '@electron-forge/cli': 6.1.1
   '@electron-forge/maker-dmg': 6.1.1
+  '@electron-forge/maker-zip': 6.1.1
   '@electron-forge/plugin-vite': 6.1.1
   '@mskelton/eslint-config': 8.0.0_rgczp4x3l3nyiww3ym4vdjc2nq
   '@mskelton/tsconfig': 2.0.0
@@ -143,6 +145,21 @@ packages:
       fs-extra: 10.1.0
     optionalDependencies:
       electron-installer-dmg: 4.0.0
+    transitivePeerDependencies:
+      - bluebird
+      - enquirer
+      - supports-color
+    dev: true
+
+  /@electron-forge/maker-zip/6.1.1:
+    resolution: {integrity: sha512-3T2bIbYhKl3Z/VyeN+X7+7U+HhgaCtBCfDi0k/Ga7CoUpge2uJS/+yjfGJdwFk4TbWhS3sNkZV2mFMKhx/rlmQ==}
+    engines: {node: '>= 14.17.5'}
+    dependencies:
+      '@electron-forge/maker-base': 6.1.1
+      '@electron-forge/shared-types': 6.1.1
+      cross-zip: 4.0.0
+      fs-extra: 10.1.0
+      got: 11.8.6
     transitivePeerDependencies:
       - bluebird
       - enquirer
@@ -1420,6 +1437,11 @@ packages:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+    dev: true
+
+  /cross-zip/4.0.0:
+    resolution: {integrity: sha512-MEzGfZo0rqE10O/B+AEcCSJLZsrWuRUvmqJTqHNqBtALhaJc3E3ixLGLJNTRzEA2K34wbmOHC4fwYs9sVsdcCA==}
+    engines: {node: '>=12.10'}
     dev: true
 
   /debounce-fn/4.0.0:
