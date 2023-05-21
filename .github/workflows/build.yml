@@ -1,5 +1,7 @@
-name: Build
+name: Release
 on: push
+permissions:
+  contents: read
 jobs:
   lint:
     name: Lint
@@ -21,12 +23,38 @@ jobs:
           node-version: "18.x"
       - name: Type check
         run: pnpm ts
-  build:
-    name: Build
+  release:
+    name: Create GitHub release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
     steps:
       - uses: mskelton/setup-pnpm@v2
         with:
           node-version: "18.x"
-      - name: Build Electron app
-        run: pnpm electron-forge make
+          fetch-depth: 0
+      - name: Release
+        run: pnpm semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  publish:
+    name: Publish Electron app
+    needs: release
+    strategy:
+      matrix:
+        os: [macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: mskelton/setup-pnpm@v2
+        with:
+          node-version: "18.x"
+      - name: Update manifest version
+        run:
+          pnpm version --no-git-tag-version ${{ needs.release.outputs.version }}
+      - name: Publish app
+        run: pnpm electron-forge publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

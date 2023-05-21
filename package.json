@@ -15,8 +15,7 @@
     "ts": "tsc",
     "format": "prettier --write .",
     "package": "electron-forge package",
-    "make": "electron-forge make",
-    "postversion": "git push && git push --tags"
+    "make": "electron-forge make"
   },
   "dependencies": {
     "electron-store": "^8.1.0",
