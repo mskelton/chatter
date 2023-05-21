@@ -34,16 +34,16 @@ process.
 Chatter is built with [Electron](https://electronjs.org/) and
 packaged/distributed with [Electron Forge](https://www.electronforge.io). To
 start contributing, first install the required packages using
-[pnpm](https://pnpm.io).
+[yarn](https://yarnpkg.com).
 
 ```bash
-pnpm install
+yarn
 ```
 
 ## Running the app
 
 ```bash
-pnpm dev
+yarn dev
 ```
 
 _Note: When running the app in development mode, the icon and name of the app
@@ -56,20 +56,20 @@ To test the packaged output on various operating systems, first run the `make`
 task to package and compile the app.
 
 ```bash
-pnpm make
+yarn make
 ```
 
 Next, follow the OS-specific instructions for testing the installation.
 
 ### macOS
 
-To run the app, run the following command after running `pnpm make`.
+To run the app, run the following command after running `yarn make`.
 
 ```bash
 open out/Chatter-darwin-arm64/Chatter.app
 ```
 
-To test the installer, run the following command after running `pnpm make`.
+To test the installer, run the following command after running `yarn make`.
 
 ```bash
 open out/make/Chatter-*.dmg
@@ -81,7 +81,7 @@ The following commands can be used to manually run ESLint, Prettier, and
 TypeScript.
 
 ```bash
-pnpm lint
-pnpm format
-pnpm ts
+yarn lint
+yarn format
+yarn ts
 ```

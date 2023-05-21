@@ -7,22 +7,22 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: mskelton/setup-pnpm@v2
+      - uses: mskelton/setup-yarn@v1
         with:
           node-version: "18.x"
       - name: Lint
-        run: pnpm lint
+        run: yarn lint
       - name: Code style
-        run: pnpm prettier --check .
+        run: yarn prettier --check .
   typecheck:
     name: Type check
     runs-on: ubuntu-latest
     steps:
-      - uses: mskelton/setup-pnpm@v2
+      - uses: mskelton/setup-yarn@v1
         with:
           node-version: "18.x"
       - name: Type check
-        run: pnpm ts
+        run: yarn ts
   release:
     name: Create GitHub release
     needs: [lint, typecheck]
@@ -33,12 +33,12 @@ jobs:
       pull-requests: write
       id-token: write
     steps:
-      - uses: mskelton/setup-pnpm@v2
+      - uses: mskelton/setup-yarn@v1
         with:
           node-version: "18.x"
           fetch-depth: 0
       - name: Release
-        run: pnpm semantic-release
+        run: yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   # publish:
@@ -51,13 +51,13 @@ jobs:
   #   permissions:
   #     contents: write
   #   steps:
-  #     - uses: mskelton/setup-pnpm@v2
+  #     - uses: mskelton/setup-yarn@v1
   #       with:
   #         node-version: "18.x"
   #     - name: Update manifest version
   #       run:
-  #         pnpm version --no-git-tag-version ${{ needs.release.outputs.version }}
+  #         yarn version --no-git-tag-version ${{ needs.release.outputs.version }}
   #     - name: Publish app
-  #       run: pnpm electron-forge publish
+  #       run: yarn electron-forge publish
   #       env:
   #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
