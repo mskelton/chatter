@@ -1,0 +1,35 @@
+name: Build
+on: push
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mskelton/setup-pnpm@v1
+        with:
+          node-version: "18.x"
+      - name: Lint
+        run: pnpm lint
+      - name: Code style
+        run: pnpm prettier --check .
+  typecheck:
+    name: Type check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mskelton/setup-pnpm@v1
+        with:
+          node-version: "18.x"
+      - name: Type check
+        run: pnpm ts
+  build:
+    name: Build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest]
+    steps:
+      - uses: mskelton/setup-pnpm@v1
+        with:
+          node-version: "18.x"
+      - name: Build Electron app
+        run: pnpm electron-forge make
