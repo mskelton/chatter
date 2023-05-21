@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "electron-forge start",
     "lint": "eslint .",
+    "ts": "tsc",
     "format": "prettier --write .",
     "package": "electron-forge package",
     "make": "electron-forge make"
