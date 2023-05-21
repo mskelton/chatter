@@ -21,20 +21,8 @@ jobs:
           node-version: "18.x"
       - name: Type check
         run: pnpm ts
-  build:
-    name: Build
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest]
-    steps:
-      - uses: mskelton/setup-pnpm@v1
-        with:
-          node-version: "18.x"
-      - name: Build Electron app
-        run: pnpm electron-forge make
   release:
-    name: Build
+    name: Release
     runs-on: macos-latest
     needs: [lint, typecheck, build]
     steps:
@@ -42,6 +30,6 @@ jobs:
         with:
           node-version: "18.x"
       - name: Publish Electron app
-        run: npx semantic-release
+        run: pnpm semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
