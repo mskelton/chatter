@@ -47,6 +47,8 @@ jobs:
       matrix:
         os: [macos-latest]
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
     steps:
       - uses: mskelton/setup-pnpm@v2
         with:
