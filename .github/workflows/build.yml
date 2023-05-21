@@ -41,23 +41,23 @@ jobs:
         run: yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  # publish:
-  #   name: Publish Electron app
-  #   needs: release
-  #   strategy:
-  #     matrix:
-  #       os: [macos-latest]
-  #   runs-on: ${{ matrix.os }}
-  #   permissions:
-  #     contents: write
-  #   steps:
-  #     - uses: mskelton/setup-yarn@v1
-  #       with:
-  #         node-version: "18.x"
-  #     - name: Update manifest version
-  #       run:
-  #         npm version --no-git-tag-version ${{ needs.release.outputs.version }}
-  #     - name: Publish app
-  #       run: yarn electron-forge publish
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  publish:
+    name: Publish Electron app
+    needs: release
+    strategy:
+      matrix:
+        os: [macos-latest]
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
+    steps:
+      - uses: mskelton/setup-yarn@v1
+        with:
+          node-version: "18.x"
+      - name: Update manifest version
+        run:
+          npm version --no-git-tag-version ${{ needs.release.outputs.version }}
+      - name: Publish app
+        run: yarn electron-forge publish --arch=universal
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
