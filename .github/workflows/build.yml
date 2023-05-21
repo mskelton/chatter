@@ -21,15 +21,12 @@ jobs:
           node-version: "18.x"
       - name: Type check
         run: pnpm ts
-  release:
-    name: Release
-    runs-on: macos-latest
-    needs: [lint, typecheck, build]
+  build:
+    name: Build
+    runs-on: ubuntu-latest
     steps:
       - uses: mskelton/setup-pnpm@v1
         with:
           node-version: "18.x"
-      - name: Publish Electron app
-        run: pnpm semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build Electron app
+        run: pnpm electron-forge make
