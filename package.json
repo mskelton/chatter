@@ -17,7 +17,8 @@
   },
   "dependencies": {
     "electron-store": "^8.1.0",
-    "electron-util": "^0.17.2"
+    "electron-util": "^0.17.2",
+    "element-ready": "^6.2.1"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.1.1",

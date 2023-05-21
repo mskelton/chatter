@@ -9,6 +9,11 @@ div:has(> span > a[href^="https://help.openai.com"]) > span
   display: none;
 }
 
+/* Fix the side nav padding since the traffic lights overlap */
+nav[aria-label="Chat history"] {
+  padding-top: 2.25rem !important;
+}
+
 @media (max-width: 767px) {
   /* Update the mobile header elements to fit well in the menu with the mac controls */
   .sticky {
@@ -18,7 +23,18 @@ div:has(> span > a[href^="https://help.openai.com"]) > span
     & > button {
       margin-top: 0;
       height: 2.4rem;
-      width: 2.4rem;
+
+      & > svg {
+        border-radius: 4px;
+        height: 2rem;
+        padding: 0.25rem;
+        width: 2rem;
+      }
+
+      &:hover > svg {
+        background-color: #374151;
+        transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      }
 
       &:first-child {
         margin-left: 4rem;
