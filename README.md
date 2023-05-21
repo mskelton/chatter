@@ -1,6 +1,5 @@
-# Chatter
-
 <div align="center">
+  <h1>Chatter</h1>
   <p>ChatGPT desktop app.</p>
   <img
     alt="Screenshot"
@@ -47,7 +46,9 @@ pnpm install
 pnpm dev
 ```
 
-_Note: _
+_Note: When running the app in development mode, the icon and name of the app
+will be the stock Electron icon and name. The real icon is only used when
+packaging._
 
 ## Testing the packaged output
 
