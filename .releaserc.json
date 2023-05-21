@@ -1,4 +1,5 @@
 {
+  "branches": ["main"],
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
@@ -11,8 +12,5 @@
         "publishCmd": "pnpm electron-forge publish --from-dry-run"
       }
     ]
-  ],
-  "release": {
-    "branches": ["main"]
-  }
+  ]
 }
