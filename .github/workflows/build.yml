@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: mskelton/setup-yarn@v1
         with:
-          node-version: "18.x"
+          node-version: '18.x'
       - name: Lint
         run: yarn lint
       - name: Code style
@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: mskelton/setup-yarn@v1
         with:
-          node-version: "18.x"
+          node-version: '18.x'
       - name: Type check
         run: yarn ts
   release:
@@ -32,15 +32,22 @@ jobs:
       issues: write
       pull-requests: write
       id-token: write
+    outputs:
+      version: ${{ steps.set-version.outputs.version }}
     steps:
       - uses: mskelton/setup-yarn@v1
         with:
-          node-version: "18.x"
+          node-version: '18.x'
           fetch-depth: 0
       - name: Release
         run: yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set version
+        id: set-version
+        run: |
+          version="$(yarn print-version)"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
   publish:
     name: Publish Electron app
     needs: release
@@ -53,9 +60,9 @@ jobs:
     steps:
       - uses: mskelton/setup-yarn@v1
         with:
-          node-version: "18.x"
+          node-version: '18.x'
       - name: Update manifest version
-        run:
+        run: |
           npm version --no-git-tag-version ${{ needs.release.outputs.version }}
       - name: Publish app
         run: yarn electron-forge publish --arch=universal

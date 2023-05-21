@@ -10,7 +10,7 @@ div:has(> span > a[href^="https://help.openai.com"]) > span
 }
 
 /* Fix the side nav padding since the traffic lights overlap */
-nav[aria-label="Chat history"] {
+nav[aria-label='Chat history'] {
   padding-top: 2.25rem !important;
 }
 
@@ -43,7 +43,7 @@ nav[aria-label="Chat history"] {
   }
 
   /* Make the header draggable to move the window */
-  html:not([style*="overflow: hidden"]) .sticky h1 {
+  html:not([style*='overflow: hidden']) .sticky h1 {
     -webkit-app-region: drag;
   }
 

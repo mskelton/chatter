@@ -4,11 +4,11 @@ import {
   MenuItem,
   MenuItemConstructorOptions,
   shell,
-} from "electron"
-import { is } from "electron-util"
-import config, { ConfigKey } from "./config.js"
+} from 'electron'
+import { is } from 'electron-util'
+import config, { ConfigKey } from './config.js'
 
-const repoURL = "https://github.com/mskelton/chatter"
+const repoURL = 'https://github.com/mskelton/chatter'
 
 export function initMenu() {
   const menu: MenuItemConstructorOptions[] = [
@@ -17,71 +17,71 @@ export function initMenu() {
       submenu: [
         {
           label: `About ${app.name}`,
-          role: "about",
+          role: 'about',
         },
         {
-          type: "separator",
+          type: 'separator',
         },
         {
-          accelerator: "CommandOrControl+H",
+          accelerator: 'CommandOrControl+H',
           label: `Hide ${app.name}`,
-          role: "hide",
+          role: 'hide',
         },
         {
-          accelerator: "CommandOrControl+Shift+H",
-          label: "Hide Others",
-          role: "hideOthers",
+          accelerator: 'CommandOrControl+Shift+H',
+          label: 'Hide Others',
+          role: 'hideOthers',
         },
         {
-          label: "Show All",
-          role: "unhide",
+          label: 'Show All',
+          role: 'unhide',
         },
         {
-          type: "separator",
+          type: 'separator',
         },
         {
-          accelerator: "CommandOrControl+Q",
+          accelerator: 'CommandOrControl+Q',
           click: () => app.quit(),
           label: `Quit ${app.name}`,
         },
       ],
     },
     {
-      label: "Settings",
+      label: 'Settings',
       submenu: [
         {
           checked: config.get(ConfigKey.KeepOnTop),
           click({ checked }) {
             config.set(ConfigKey.KeepOnTop, checked)
           },
-          id: "keep-on-top",
-          label: "Keep Window on Top",
-          type: "checkbox",
+          id: 'keep-on-top',
+          label: 'Keep Window on Top',
+          type: 'checkbox',
         },
       ],
     },
     {
-      role: "editMenu",
+      role: 'editMenu',
     },
     {
-      label: "Window",
-      role: "window",
+      label: 'Window',
+      role: 'window',
       submenu: [
         {
-          accelerator: "CommandOrControl+M",
-          label: "Minimize",
-          role: "minimize",
+          accelerator: 'CommandOrControl+M',
+          label: 'Minimize',
+          role: 'minimize',
         },
         {
-          accelerator: "CommandOrControl+W",
-          label: "Close",
-          role: "close",
+          accelerator: 'CommandOrControl+W',
+          label: 'Close',
+          role: 'close',
         },
       ],
     },
     {
-      label: "Help",
-      role: "help",
+      label: 'Help',
+      role: 'help',
       submenu: [
         {
           click: () => shell.openExternal(repoURL),
@@ -89,7 +89,7 @@ export function initMenu() {
         },
         {
           click: () => shell.openExternal(`${repoURL}/issues/new`),
-          label: "Report an Issue",
+          label: 'Report an Issue',
         },
       ],
     },
@@ -98,7 +98,7 @@ export function initMenu() {
   // Add the develop menu when running in the development environment
   if (is.development) {
     menu.push({
-      label: "Develop",
+      label: 'Develop',
       submenu: [
         {
           click() {
@@ -106,7 +106,7 @@ export function initMenu() {
             app.relaunch()
             app.exit(0)
           },
-          label: "Clear Cache and Restart",
+          label: 'Clear Cache and Restart',
         },
       ],
     })
@@ -120,7 +120,7 @@ export function initMenu() {
   }
 
   config.onDidChange(ConfigKey.KeepOnTop, (value) => {
-    setItem("keep-on-top", (item) => (item.checked = !!value))
+    setItem('keep-on-top', (item) => (item.checked = !!value))
   })
 
   Menu.setApplicationMenu(appMenu)

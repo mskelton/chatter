@@ -14,54 +14,54 @@ const y = (pos) => loc(pos) - 10
 module.exports = {
   makers: [
     {
-      name: "@electron-forge/maker-zip",
-      platforms: ["darwin"],
+      name: '@electron-forge/maker-zip',
+      platforms: ['darwin'],
     },
     {
       config: {
-        background: "./assets/dmg-background.png",
-        "background-color": "#132933",
+        background: './assets/dmg-background.png',
+        'background-color': '#132933',
         contents: (opts) => [
-          { path: "/Applications", type: "link", x: loc(428), y: y(85) },
-          { path: opts.appPath, type: "file", x: loc(42), y: y(85) },
+          { path: '/Applications', type: 'link', x: loc(428), y: y(85) },
+          { path: opts.appPath, type: 'file', x: loc(42), y: y(85) },
         ],
-        format: "ULFO",
-        icon: "./assets/icons/icon.icns",
+        format: 'ULFO',
+        icon: './assets/icons/icon.icns',
       },
-      name: "@electron-forge/maker-dmg",
+      name: '@electron-forge/maker-dmg',
     },
   ],
   packagerConfig: {
-    appBundleId: "dev.mskelton.chatter",
-    icon: "./assets/icons/icon",
+    appBundleId: 'dev.mskelton.chatter',
+    icon: './assets/icons/icon',
   },
   plugins: [
     {
       config: {
         build: [
           {
-            config: "vite.main.config.mjs",
-            entry: "src/main.ts",
+            config: 'vite.main.config.mjs',
+            entry: 'src/main.ts',
           },
           {
-            config: "vite.preload.config.mjs",
-            entry: "src/preload.ts",
+            config: 'vite.preload.config.mjs',
+            entry: 'src/preload.ts',
           },
         ],
         renderer: [],
       },
-      name: "@electron-forge/plugin-vite",
+      name: '@electron-forge/plugin-vite',
     },
   ],
   publishers: [
     {
       config: {
         repository: {
-          name: "chatter",
-          owner: "mskelton",
+          name: 'chatter',
+          owner: 'mskelton',
         },
       },
-      name: "@electron-forge/publisher-github",
+      name: '@electron-forge/publisher-github',
     },
   ],
   rebuildConfig: {},

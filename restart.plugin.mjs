@@ -3,15 +3,15 @@ export function restart() {
 
   return {
     closeBundle() {
-      if (config.mode === "production") {
+      if (config.mode === 'production') {
         return
       }
 
-      process.stdin.emit("data", "rs")
+      process.stdin.emit('data', 'rs')
     },
     configResolved(_config) {
       config = _config
     },
-    name: "electron-restart",
+    name: 'electron-restart',
   }
 }
