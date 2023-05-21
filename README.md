@@ -1,8 +1,13 @@
 # Chatter
 
-ChatGPT desktop app.
-
-![Screenshot](https://github.com/mskelton/chatter/assets/25914066/c7ad4c7d-0bed-43ee-bb57-6205dac91434)
+<div style="text-align: center">
+  <p>ChatGPT desktop app.</p>
+  <img
+    alt="Screenshot"
+    src="https://github.com/mskelton/chatter/assets/25914066/c7ad4c7d-0bed-43ee-bb57-6205dac91434"
+    width="400px"
+  />
+</div>
 
 ## Installation
 
