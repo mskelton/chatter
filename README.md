@@ -85,3 +85,8 @@ pnpm lint
 pnpm format
 pnpm ts
 ```
+
+## Releasing
+
+- Update the changelog
+- Bump the version `pn version <major|minor|patch>`

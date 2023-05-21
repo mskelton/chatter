@@ -1,7 +1,7 @@
 {
   "name": "chatter",
   "productName": "Chatter",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "description": "ChatGPT desktop app",
   "repository": "https://github.com/mskelton/chatter",
@@ -14,7 +14,8 @@
     "ts": "tsc",
     "format": "prettier --write .",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {
     "electron-store": "^8.1.0",
