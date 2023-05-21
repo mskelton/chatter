@@ -53,5 +53,16 @@ module.exports = {
       name: "@electron-forge/plugin-vite",
     },
   ],
+  publishers: [
+    {
+      config: {
+        repository: {
+          name: "chatter",
+          owner: "mskelton",
+        },
+      },
+      name: "@electron-forge/publisher-github",
+    },
+  ],
   rebuildConfig: {},
 }

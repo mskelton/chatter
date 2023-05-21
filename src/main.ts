@@ -1,8 +1,11 @@
 import { app, BrowserWindow, ipcMain } from "electron"
 import path from "node:path"
+import autoUpdate from "update-electron-app"
 import config, { ConfigKey } from "./config.js"
 import { initMenu } from "./menu.js"
 import styles from "./styles/main.css"
+
+autoUpdate()
 
 function createWindow() {
   const lastWindowState = config.get(ConfigKey.LastWindowState)

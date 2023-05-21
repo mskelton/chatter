@@ -7,7 +7,6 @@ import {
 } from "electron"
 import { is } from "electron-util"
 import config, { ConfigKey } from "./config.js"
-import { checkForUpdates } from "./updates.js"
 
 const repoURL = "https://github.com/mskelton/chatter"
 
@@ -19,10 +18,6 @@ export function initMenu() {
         {
           label: `About ${app.name}`,
           role: "about",
-        },
-        {
-          click: () => checkForUpdates(),
-          label: "Check for Updates...",
         },
         {
           type: "separator",

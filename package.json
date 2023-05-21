@@ -3,6 +3,7 @@
   "productName": "Chatter",
   "version": "1.0.0",
   "description": "ChatGPT desktop app",
+  "repository": "https://github.com/mskelton/chatter",
   "author": "Mark Skelton",
   "license": "ISC",
   "main": ".vite/build/main.js",
@@ -18,7 +19,8 @@
   "dependencies": {
     "electron-store": "^8.1.0",
     "electron-util": "^0.17.2",
-    "element-ready": "^6.2.1"
+    "element-ready": "^6.2.1",
+    "update-electron-app": "^2.0.1"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.1.1",
