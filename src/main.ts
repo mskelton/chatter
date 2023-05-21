@@ -1,12 +1,14 @@
-import { app, BrowserWindow } from "electron"
+import { app, BrowserWindow, ipcMain } from "electron"
 import path from "node:path"
 import config, { ConfigKey } from "./config.js"
+import { initMenu } from "./menu.js"
 import styles from "./styles/main.css"
 
 function createWindow() {
   const lastWindowState = config.get(ConfigKey.LastWindowState)
 
   const win = new BrowserWindow({
+    alwaysOnTop: config.get(ConfigKey.KeepOnTop),
     height: lastWindowState.bounds.height,
     minHeight: 600,
     minWidth: 400,
@@ -47,11 +49,22 @@ function createWindow() {
 
   win.on("resize", saveWindowState)
   win.on("move", saveWindowState)
+
+  ipcMain.on("keep-on-top", () => {
+    config.set(ConfigKey.KeepOnTop, !config.get(ConfigKey.KeepOnTop))
+  })
+
+  config.onDidChange(ConfigKey.KeepOnTop, (value) => {
+    win.setAlwaysOnTop(!!value)
+  })
 }
 
 // This method will be called when Electron has finished initialization and is
 // ready to create browser windows. Some APIs can only be used after this event occurs.
-app.whenReady().then(createWindow)
+app.whenReady().then(() => {
+  createWindow()
+  initMenu()
+})
 
 app.on("activate", () => {
   // On macOS it's common to re-create a window in the app when the dock icon is
