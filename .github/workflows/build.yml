@@ -25,6 +25,7 @@ jobs:
         run: pnpm ts
   release:
     name: Create GitHub release
+    needs: [lint, typecheck]
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -40,23 +41,23 @@ jobs:
         run: pnpm semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  publish:
-    name: Publish Electron app
-    needs: release
-    strategy:
-      matrix:
-        os: [macos-latest]
-    runs-on: ${{ matrix.os }}
-    permissions:
-      contents: write
-    steps:
-      - uses: mskelton/setup-pnpm@v2
-        with:
-          node-version: "18.x"
-      - name: Update manifest version
-        run:
-          pnpm version --no-git-tag-version ${{ needs.release.outputs.version }}
-      - name: Publish app
-        run: pnpm electron-forge publish
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # publish:
+  #   name: Publish Electron app
+  #   needs: release
+  #   strategy:
+  #     matrix:
+  #       os: [macos-latest]
+  #   runs-on: ${{ matrix.os }}
+  #   permissions:
+  #     contents: write
+  #   steps:
+  #     - uses: mskelton/setup-pnpm@v2
+  #       with:
+  #         node-version: "18.x"
+  #     - name: Update manifest version
+  #       run:
+  #         pnpm version --no-git-tag-version ${{ needs.release.outputs.version }}
+  #     - name: Publish app
+  #       run: pnpm electron-forge publish
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
