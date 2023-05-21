@@ -13,7 +13,9 @@
 Download the latest release of Chatter for your OS and follow the installation
 process.
 
-- [macOS](https://github.com/mskelton/chatter/releases/latest)
+- macOS
+  - [Apple Silicon](https://github.com/mskelton/chatter/releases/download/latest/Chatter-1.0.0--arm64.dmg)
+  - [Intel](https://github.com/mskelton/chatter/releases/download/latest/Chatter-1.0.0-x64.dmg)
 - Windows - coming soon!
 - Linux - coming soon!
 

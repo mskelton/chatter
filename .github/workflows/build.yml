@@ -56,7 +56,7 @@ jobs:
   #         node-version: "18.x"
   #     - name: Update manifest version
   #       run:
-  #         yarn version --no-git-tag-version ${{ needs.release.outputs.version }}
+  #         npm version --no-git-tag-version ${{ needs.release.outputs.version }}
   #     - name: Publish app
   #       run: yarn electron-forge publish
   #       env:
