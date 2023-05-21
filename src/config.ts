@@ -1,5 +1,5 @@
-import Store from "electron-store"
-import { is } from "electron-util"
+import Store from 'electron-store'
+import { is } from 'electron-util'
 
 interface LastWindowState {
   bounds: {
@@ -13,8 +13,8 @@ interface LastWindowState {
 }
 
 export enum ConfigKey {
-  KeepOnTop = "keepOnTop",
-  LastWindowState = "lastWindowState",
+  KeepOnTop = 'keepOnTop',
+  LastWindowState = 'lastWindowState',
 }
 
 interface ConfigStore {
@@ -37,26 +37,26 @@ const config = new Store<ConfigStore>({
     },
   },
   migrations: {},
-  name: is.development ? "config.dev" : "config",
+  name: is.development ? 'config.dev' : 'config',
   schema: {
     [ConfigKey.KeepOnTop]: {
-      type: "boolean",
+      type: 'boolean',
     },
     [ConfigKey.LastWindowState]: {
       properties: {
         bounds: {
           properties: {
-            height: { type: "number" },
-            width: { type: "number" },
-            x: { type: "number" },
-            y: { type: "number" },
+            height: { type: 'number' },
+            width: { type: 'number' },
+            x: { type: 'number' },
+            y: { type: 'number' },
           },
-          type: "object",
+          type: 'object',
         },
-        fullscreen: { type: "boolean" },
-        maximized: { type: "boolean" },
+        fullscreen: { type: 'boolean' },
+        maximized: { type: 'boolean' },
       },
-      type: "object",
+      type: 'object',
     },
   },
 })

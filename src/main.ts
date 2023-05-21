@@ -1,9 +1,9 @@
-import { app, BrowserWindow, ipcMain } from "electron"
-import path from "node:path"
-import autoUpdate from "update-electron-app"
-import config, { ConfigKey } from "./config.js"
-import { initMenu } from "./menu.js"
-import styles from "./styles/main.css"
+import { app, BrowserWindow, ipcMain } from 'electron'
+import path from 'node:path'
+import autoUpdate from 'update-electron-app'
+import config, { ConfigKey } from './config.js'
+import { initMenu } from './menu.js'
+import styles from './styles/main.css'
 
 autoUpdate()
 
@@ -17,10 +17,10 @@ function createWindow() {
     minWidth: 400,
     show: false,
     title: app.name,
-    titleBarStyle: "hiddenInset",
+    titleBarStyle: 'hiddenInset',
     webPreferences: {
       nodeIntegration: false,
-      preload: path.join(__dirname, "preload.js"),
+      preload: path.join(__dirname, 'preload.js'),
     },
     width: lastWindowState.bounds.width,
     x: lastWindowState.bounds.x,
@@ -35,9 +35,9 @@ function createWindow() {
     win.maximize()
   }
 
-  win.loadURL("https://chat.openai.com")
+  win.loadURL('https://chat.openai.com')
 
-  win.webContents.on("dom-ready", async () => {
+  win.webContents.on('dom-ready', async () => {
     await win.webContents.insertCSS(styles)
     win.show()
   })
@@ -50,10 +50,10 @@ function createWindow() {
     })
   }
 
-  win.on("resize", saveWindowState)
-  win.on("move", saveWindowState)
+  win.on('resize', saveWindowState)
+  win.on('move', saveWindowState)
 
-  ipcMain.on("keep-on-top", () => {
+  ipcMain.on('keep-on-top', () => {
     config.set(ConfigKey.KeepOnTop, !config.get(ConfigKey.KeepOnTop))
   })
 
@@ -69,7 +69,7 @@ app.whenReady().then(() => {
   initMenu()
 })
 
-app.on("activate", () => {
+app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the dock icon is
   // clicked and there are no other windows open.
   if (!BrowserWindow.getAllWindows().length) {
@@ -80,8 +80,8 @@ app.on("activate", () => {
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
     app.quit()
   }
 })

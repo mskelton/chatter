@@ -6,7 +6,7 @@ export class Shortcuts {
   }
 
   listen() {
-    document.addEventListener("keydown", (event) => {
+    document.addEventListener('keydown', (event) => {
       if (!event.metaKey) return
       const callback = this.#registrations.get(event.key)
 
