@@ -25,6 +25,7 @@ jobs:
         run: yarn ts
   release:
     name: Create GitHub release
+    if: github.ref == 'refs/heads/main'
     needs: [lint, typecheck]
     runs-on: ubuntu-latest
     permissions:
@@ -50,6 +51,7 @@ jobs:
           echo "version=$version" >> "$GITHUB_OUTPUT"
   publish:
     name: Publish Electron app
+    if: github.ref == 'refs/heads/main'
     needs: release
     strategy:
       matrix:
