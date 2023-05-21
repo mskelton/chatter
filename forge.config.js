@@ -20,8 +20,9 @@ module.exports = {
     {
       config: {
         background: "./assets/dmg-background.png",
+        "background-color": "#132933",
         contents: (opts) => [
-          { path: "/Applications", type: "link", x: loc(427), y: y(85) },
+          { path: "/Applications", type: "link", x: loc(428), y: y(85) },
           { path: opts.appPath, type: "file", x: loc(42), y: y(85) },
         ],
         format: "ULFO",
