@@ -34,6 +34,13 @@ module.exports = {
   packagerConfig: {
     appBundleId: 'dev.mskelton.chatter',
     icon: './assets/icons/icon',
+    osxNotarize: {
+      appleId: process.env.APPLE_ID,
+      appleIdPassword: process.env.APPLE_PASSWORD,
+      teamId: process.env.APPLE_TEAM_ID,
+      tool: 'notarytool',
+    },
+    osxSign: {},
   },
   plugins: [
     {
