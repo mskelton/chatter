@@ -51,7 +51,7 @@ jobs:
           echo "version=$version" >> "$GITHUB_OUTPUT"
   publish:
     name: Publish Electron app
-    if: github.ref == 'refs/heads/main'
+    if: ${{ needs.release.outputs.version != '0.0.1-semantically-released' }}
     needs: release
     strategy:
       matrix:
