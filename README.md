@@ -10,12 +10,9 @@
 
 ## Installation
 
-Download the latest release of Chatter for your OS and follow the installation
-process.
-
-- [macOS](https://github.com/mskelton/chatter/releases/download/v1.0.1/Chatter-1.0.1-universal.dmg)
-- Windows - coming soon!
-- Linux - coming soon!
+Visit the [releases page](https://github.com/mskelton/chatter/releases/latest)
+to download the latest release of Chatter for your OS and follow the
+installation process
 
 ## Features
 
