@@ -7,10 +7,12 @@ import styles from './styles/main.css'
 
 autoUpdate()
 
+let win: BrowserWindow
+
 function createWindow() {
   const lastWindowState = config.get(ConfigKey.LastWindowState)
 
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     alwaysOnTop: config.get(ConfigKey.KeepOnTop),
     height: lastWindowState.bounds.height,
     minHeight: 600,
@@ -52,14 +54,6 @@ function createWindow() {
 
   win.on('resize', saveWindowState)
   win.on('move', saveWindowState)
-
-  ipcMain.on('keep-on-top', () => {
-    config.set(ConfigKey.KeepOnTop, !config.get(ConfigKey.KeepOnTop))
-  })
-
-  config.onDidChange(ConfigKey.KeepOnTop, (value) => {
-    win.setAlwaysOnTop(!!value)
-  })
 }
 
 // This method will be called when Electron has finished initialization and is
@@ -84,4 +78,12 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
+})
+
+ipcMain.on('keep-on-top', () => {
+  config.set(ConfigKey.KeepOnTop, !config.get(ConfigKey.KeepOnTop))
+})
+
+config.onDidChange(ConfigKey.KeepOnTop, (value) => {
+  win.setAlwaysOnTop(!!value)
 })
