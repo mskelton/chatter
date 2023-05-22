@@ -2286,7 +2286,6 @@ __metadata:
     electron: ^24.3.1
     electron-store: ^8.1.0
     electron-util: ^0.17.2
-    element-ready: ^6.2.1
     eslint: ^8.41.0
     eslint-plugin-sort: ^2.10.0
     prettier: ^2.8.8
@@ -2836,16 +2835,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"deferred-async-iterator@npm:^2.0.0":
-  version: 2.1.0
-  resolution: "deferred-async-iterator@npm:2.1.0"
-  dependencies:
-    p-defer: ^4.0.0
-    yocto-queue: ^1.0.0
-  checksum: 64c6d0490838e894de494f54d966ca7859b00e81f1d8fdfcaf7e4da043c504298c96a15e6cb74b0862a4830688294124131d4fc68d823ce34c8c709692c81245
-  languageName: node
-  linkType: hard
-
 "define-properties@npm:^1.1.3":
   version: 1.2.0
   resolution: "define-properties@npm:1.2.0"
@@ -3074,18 +3063,6 @@ __metadata:
   bin:
     electron: cli.js
   checksum: 502f822c9f9de381dcb0668436813f3552159b86dfd0563d8cda923bc7d26949f25231a5a008ea4564a0ec4bd70da6d01f95e343ba422a6b3614e93bb219ffd0
-  languageName: node
-  linkType: hard
-
-"element-ready@npm:^6.2.1":
-  version: 6.2.1
-  resolution: "element-ready@npm:6.2.1"
-  dependencies:
-    deferred-async-iterator: ^2.0.0
-    many-keys-map: ^1.0.3
-    p-defer: ^4.0.0
-    typed-query-selector: ^2.6.1
-  checksum: 9175ef18de5823459695cf085ba1ae41b4dd72722c4dc09df7df8b849fc550528e311124c09bcfd8138a91b55c96485308bc100c1e91a3a7916578b95609a379
   languageName: node
   linkType: hard
 
@@ -5546,13 +5523,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"many-keys-map@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "many-keys-map@npm:1.0.3"
-  checksum: e75f2c1f50f87a252f9978788b0a0db6b0ee1dfe8f37489fae4e11c468d12fa6385e756ed11b3c59af3dff7bdad0e4e3a363063edaa597df42edaa5865e676a1
-  languageName: node
-  linkType: hard
-
 "map-age-cleaner@npm:^0.1.1":
   version: 0.1.3
   resolution: "map-age-cleaner@npm:0.1.3"
@@ -6489,13 +6459,6 @@ __metadata:
   version: 1.0.0
   resolution: "p-defer@npm:1.0.0"
   checksum: 4271b935c27987e7b6f229e5de4cdd335d808465604644cb7b4c4c95bef266735859a93b16415af8a41fd663ee9e3b97a1a2023ca9def613dba1bad2a0da0c7b
-  languageName: node
-  linkType: hard
-
-"p-defer@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "p-defer@npm:4.0.0"
-  checksum: 646c9e86e62d2299ee9e8722b9857c9a2918afb8626c4eaf072d956de0d5b33c1cb132e5754516c923fc691eb33aa216755e168f848b045c1279186c8e2d852f
   languageName: node
   linkType: hard
 
@@ -8449,13 +8412,6 @@ __metadata:
     media-typer: 0.3.0
     mime-types: ~2.1.24
   checksum: 2c8e47675d55f8b4e404bcf529abdf5036c537a04c2b20177bcf78c9e3c1da69da3942b1346e6edb09e823228c0ee656ef0e033765ec39a70d496ef601a0c657
-  languageName: node
-  linkType: hard
-
-"typed-query-selector@npm:^2.6.1":
-  version: 2.10.1
-  resolution: "typed-query-selector@npm:2.10.1"
-  checksum: 64097dc5b0228fa95953aeea7f25ba71b555b3d17898f74b46dba025538f001055b9c70b1e161e8d9b1136fafde1c86f9280a0dc841bb13677d0ebd4158468f7
   languageName: node
   linkType: hard
 

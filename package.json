@@ -21,7 +21,6 @@
   "dependencies": {
     "electron-store": "^8.1.0",
     "electron-util": "^0.17.2",
-    "element-ready": "^6.2.1",
     "update-electron-app": "^2.0.1"
   },
   "devDependencies": {
