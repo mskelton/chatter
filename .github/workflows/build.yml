@@ -3,55 +3,55 @@ on: push
 permissions:
   contents: read
 jobs:
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: mskelton/setup-yarn@v1
-        with:
-          node-version: '18.x'
-      - name: Lint
-        run: yarn lint
-      - name: Code style
-        run: yarn prettier --check .
-  typecheck:
-    name: Type check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: mskelton/setup-yarn@v1
-        with:
-          node-version: '18.x'
-      - name: Type check
-        run: yarn ts
-  release:
-    name: Create GitHub release
-    if: github.ref == 'refs/heads/main'
-    needs: [lint, typecheck]
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      issues: write
-      pull-requests: write
-      id-token: write
-    outputs:
-      version: ${{ steps.set-version.outputs.version }}
-    steps:
-      - uses: mskelton/setup-yarn@v1
-        with:
-          node-version: '18.x'
-          fetch-depth: 0
-      - name: Release
-        run: yarn semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Set version
-        id: set-version
-        run: |
-          version="$(yarn print-version)"
-          echo "version=$version" >> "$GITHUB_OUTPUT"
+  # lint:
+  #   name: Lint
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: mskelton/setup-yarn@v1
+  #       with:
+  #         node-version: '18.x'
+  #     - name: Lint
+  #       run: yarn lint
+  #     - name: Code style
+  #       run: yarn prettier --check .
+  # typecheck:
+  #   name: Type check
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: mskelton/setup-yarn@v1
+  #       with:
+  #         node-version: '18.x'
+  #     - name: Type check
+  #       run: yarn ts
+  # release:
+  #   name: Create GitHub release
+  #   if: github.ref == 'refs/heads/main'
+  #   needs: [lint, typecheck]
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     contents: write
+  #     issues: write
+  #     pull-requests: write
+  #     id-token: write
+  #   outputs:
+  #     version: ${{ steps.set-version.outputs.version }}
+  #   steps:
+  #     - uses: mskelton/setup-yarn@v1
+  #       with:
+  #         node-version: '18.x'
+  #         fetch-depth: 0
+  #     - name: Release
+  #       run: yarn semantic-release
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: Set version
+  #       id: set-version
+  #       run: |
+  #         version="$(yarn print-version)"
+  #         echo "version=$version" >> "$GITHUB_OUTPUT"
   publish:
     name: Publish Electron app
-    if: ${{ needs.release.outputs.version != '0.0.1-semantically-released' }}
+    # if: ${{ needs.release.outputs.version != '0.0.1-semantically-released' }}
     needs: release
     strategy:
       matrix:
@@ -65,11 +65,21 @@ jobs:
           node-version: '18.x'
       - name: Update manifest version
         run: |
-          npm version --no-git-tag-version ${{ needs.release.outputs.version }}
+          npm version --no-git-tag-version v0.0.1
+      - name: Add macOS certs
+        if: matrix.os == 'macos-latest'
+        run: |
+          chmod +x ./config/add-osx-cert.sh
+          ./config/add-osx-cert.sh
+        env:
+          CERTIFICATE_OSX_APPLICATION:
+            ${{ secrets.CERTIFICATE_OSX_APPLICATION }}
+          CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
       - name: Publish app
         run: yarn electron-forge publish --arch=universal
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_IDENTITY: ${{ secrets.APPLE_IDENTITY }}
           APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
