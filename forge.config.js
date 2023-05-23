@@ -36,10 +36,13 @@ module.exports = {
     appCategoryType: 'public.app-category.developer-tools',
     icon: './assets/icons/icon',
     osxNotarize: {
+      // appleId: process.env.APPLE_ID,
+      // appleIdPassword: process.env.APPLE_PASSWORD,
+      // teamId: process.env.APPLE_TEAM_ID,
+      // tool: 'notarytool',
       appleId: process.env.APPLE_ID,
-      appleIdPassword: process.env.APPLE_PASSWORD,
-      teamId: process.env.APPLE_TEAM_ID,
-      tool: 'notarytool',
+      appleIdPassword: process.env.APPLE_ID_PASSWORD,
+      ascProvider: process.env.APPLE_TEAM_ID,
     },
     osxSign: {
       'entitlements': 'assets/entitlements.plist',
