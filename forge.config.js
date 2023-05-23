@@ -19,20 +19,21 @@ module.exports = {
     },
     {
       config: {
-        background: './assets/dmg-background.png',
+        'background': './assets/dmg-background.png',
         'background-color': '#132933',
-        contents: (opts) => [
+        'contents': (opts) => [
           { path: '/Applications', type: 'link', x: loc(428), y: y(85) },
           { path: opts.appPath, type: 'file', x: loc(42), y: y(85) },
         ],
-        format: 'ULFO',
-        icon: './assets/icons/icon.icns',
+        'format': 'ULFO',
+        'icon': './assets/icons/icon.icns',
       },
       name: '@electron-forge/maker-dmg',
     },
   ],
   packagerConfig: {
     appBundleId: 'dev.mskelton.chatter',
+    appCategoryType: 'public.app-category.developer-tools',
     icon: './assets/icons/icon',
     osxNotarize: {
       appleId: process.env.APPLE_ID,
@@ -41,7 +42,12 @@ module.exports = {
       tool: 'notarytool',
     },
     osxSign: {
-      identity: process.env.APPLE_IDENTITY,
+      'entitlements': 'assets/entitlements.plist',
+      'entitlements-inherit': 'assets/entitlements.plist',
+      'gatekeeper-assess': false,
+      'hardened-runtime': true,
+      'identity': `Developer ID Application: Mark Skelton (${process.env.APPLE_TEAM_ID})`,
+      'signature-flags': 'library',
     },
   },
   plugins: [

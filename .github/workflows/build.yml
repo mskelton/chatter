@@ -69,12 +69,11 @@ jobs:
       - name: Add macOS certs
         if: matrix.os == 'macos-latest'
         run: |
-          chmod +x ./config/add-osx-cert.sh
-          ./config/add-osx-cert.sh
+          chmod +x ./scripts/add-osx-cert.sh
+          ./scripts/add-osx-cert.sh
         env:
-          CERTIFICATE_OSX_APPLICATION:
-            ${{ secrets.CERTIFICATE_OSX_APPLICATION }}
-          CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
+          MACOS_CERT_P12: ${{ secrets.CERTIFICATE_OSX_APPLICATION }}
+          MACOS_CERT_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
       - name: Publish app
         run: yarn electron-forge publish --arch=universal
         env:
