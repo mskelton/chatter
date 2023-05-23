@@ -66,16 +66,8 @@ jobs:
       - name: Update manifest version
         run: |
           npm version --no-git-tag-version v0.0.1
-      - name: Add macOS certs
-        if: matrix.os == 'macos-latest'
-        run: |
-          chmod +x ./scripts/add-osx-cert.sh
-          ./scripts/add-osx-cert.sh
-        env:
-          MACOS_CERT_P12: ${{ secrets.CERTIFICATE_OSX_APPLICATION }}
-          MACOS_CERT_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
       - name: Publish app
-        run: yarn electron-forge publish --arch=universal
+        run: yarn electron-forge make
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           APPLE_ID: ${{ secrets.APPLE_ID }}

@@ -36,22 +36,12 @@ module.exports = {
     appCategoryType: 'public.app-category.developer-tools',
     icon: './assets/icons/icon',
     osxNotarize: {
-      // appleId: process.env.APPLE_ID,
-      // appleIdPassword: process.env.APPLE_PASSWORD,
-      // teamId: process.env.APPLE_TEAM_ID,
-      // tool: 'notarytool',
       appleId: process.env.APPLE_ID,
       appleIdPassword: process.env.APPLE_PASSWORD,
-      ascProvider: process.env.APPLE_TEAM_ID,
+      teamId: process.env.APPLE_TEAM_ID,
+      tool: 'notarytool',
     },
-    osxSign: {
-      'entitlements': 'assets/entitlements.plist',
-      'entitlements-inherit': 'assets/entitlements.plist',
-      'gatekeeper-assess': false,
-      'hardened-runtime': true,
-      'identity': `Developer ID Application: Mark Skelton (${process.env.APPLE_TEAM_ID})`,
-      'signature-flags': 'library',
-    },
+    osxSign: {},
   },
   plugins: [
     {
