@@ -52,7 +52,7 @@ jobs:
   publish:
     name: Publish Electron app
     # if: ${{ needs.release.outputs.version != '0.0.1-semantically-released' }}
-    needs: release
+    # needs: release
     strategy:
       matrix:
         os: [macos-latest]
