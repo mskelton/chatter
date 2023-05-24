@@ -21,3 +21,7 @@ security set-key-partition-list -S apple-tool:,apple: -s -k actions $KEY_CHAIN
 
 # remove certs
 rm -fr *.p12
+
+# echo the identity, just so that we know it worked.
+# this won't display anything secret.
+security find-identity -v -p codesigning
