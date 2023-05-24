@@ -8,7 +8,7 @@
   "repository": "https://github.com/mskelton/chatter",
   "author": "Mark Skelton",
   "license": "ISC",
-  "main": ".vite/build/main.js",
+  "main": ".webpack/main",
   "scripts": {
     "dev": "electron-forge start",
     "lint": "eslint .",
@@ -27,18 +27,26 @@
     "@electron-forge/cli": "^6.1.1",
     "@electron-forge/maker-dmg": "^6.1.1",
     "@electron-forge/maker-zip": "^6.1.1",
-    "@electron-forge/plugin-vite": "^6.1.1",
+    "@electron-forge/plugin-webpack": "^6.1.1",
     "@electron-forge/publisher-github": "^6.1.1",
     "@mskelton/eslint-config": "^8.0.0",
     "@mskelton/tsconfig": "^2.0.0",
     "@semantic-release/exec": "^6.0.3",
+    "@types/node": "^20.2.3",
     "@typescript-eslint/eslint-plugin": "^5.59.6",
     "@typescript-eslint/parser": "^5.59.6",
+    "@vercel/webpack-asset-relocator-loader": "1.7.3",
     "electron": "^24.3.1",
     "eslint": "^8.41.0",
     "eslint-plugin-sort": "^2.10.0",
+    "glob": "^10.2.6",
+    "node-loader": "^2.0.0",
     "prettier": "^2.8.8",
+    "raw-loader": "^4.0.2",
     "semantic-release": "^21.0.2",
-    "typescript": "^5.0.4"
+    "ts-loader": "^9.2.2",
+    "ts-node": "^10.0.0",
+    "typescript": "^5.0.4",
+    "webpack": "^5.83.1"
   }
 }

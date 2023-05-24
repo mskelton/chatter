@@ -1,8 +1,8 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
 import path from 'node:path'
 import autoUpdate from 'update-electron-app'
-import config, { ConfigKey } from './config.js'
-import { initMenu } from './menu.js'
+import config, { ConfigKey } from './config'
+import { initMenu } from './menu'
 import styles from './styles/main.css'
 
 autoUpdate()
@@ -13,7 +13,7 @@ function createWindow() {
   const lastWindowState = config.get(ConfigKey.LastWindowState)
 
   win = new BrowserWindow({
-    alwaysOnTop: config.get(ConfigKey.KeepOnTop),
+    alwaysOnTop: config.get(ConfigKey.StayOnTop),
     height: lastWindowState.bounds.height,
     minHeight: 600,
     minWidth: 400,
@@ -80,10 +80,10 @@ app.on('window-all-closed', () => {
   }
 })
 
-ipcMain.on('keep-on-top', () => {
-  config.set(ConfigKey.KeepOnTop, !config.get(ConfigKey.KeepOnTop))
+ipcMain.on('stay-on-top', () => {
+  config.set(ConfigKey.StayOnTop, !config.get(ConfigKey.StayOnTop))
 })
 
-config.onDidChange(ConfigKey.KeepOnTop, (value) => {
+config.onDidChange(ConfigKey.StayOnTop, (value) => {
   win.setAlwaysOnTop(!!value)
 })
