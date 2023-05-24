@@ -72,8 +72,8 @@ jobs:
           chmod +x ./scripts/add-osx-cert.sh
           ./scripts/add-osx-cert.sh
         env:
-          MACOS_CERT_P12: ${{ secrets.CERTIFICATE_OSX_APPLICATION }}
-          MACOS_CERT_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
+          MACOS_CERT_P12: ${{ secrets.MACOS_CERT_P12 }}
+          MACOS_CERT_PASSWORD: ${{ secrets.MACOS_CERT_PASSWORD }}
       - name: Publish app
         run: yarn electron-forge make
         env:
