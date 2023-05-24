@@ -1,36 +1,23 @@
-# Set the filename
-export CERTIFICATE_P12=cert.p12
+#!/usr/bin/env sh
 
-# Let's invent a new keychain
-export KEYCHAIN=build.keychain
+KEY_CHAIN=build.keychain
+MACOS_CERT_P12_FILE=certificate.p12
 
-# Decode the environment variable into our file
-echo $MACOS_CERT_P12 | base64 --decode >$CERTIFICATE_P12
+# Recreate the certificate from the secure environment variable
+echo $MACOS_CERT_P12 | base64 --decode >$MACOS_CERT_P12_FILE
 
-# Create the keychain with a password
-security create-keychain -p actions $KEYCHAIN
+#create a keychain
+security create-keychain -p actions $KEY_CHAIN
 
-# Make the custom keychain default, so xcodebuild will use it for signing
-security default-keychain -s $KEYCHAIN
+# Make the keychain the default so identities are found
+security default-keychain -s $KEY_CHAIN
 
 # Unlock the keychain
-security unlock-keychain -p actions $KEYCHAIN
+security unlock-keychain -p actions $KEY_CHAIN
 
-# Add certificates to keychain and allow codesign to access them
+security import $MACOS_CERT_P12_FILE -k $KEY_CHAIN -P $MACOS_CERT_PASSWORD -T /usr/bin/codesign
 
-# 1) Apple Worldwide Developer Relations Certification Authority
-security import ./assets/certs/apple.cer -k ~/Library/Keychains/$KEYCHAIN -T /usr/bin/codesign
-# 2) Developer Authentication Certification Authority
-security import ./assets/certs/dac.cer -k ~/Library/Keychains/$KEYCHAIN -T /usr/bin/codesign
-# 3) Developer ID (That's you!)
-security import $CERTIFICATE_P12 -k $KEYCHAIN -P $MACOS_CERT_PASSWORD -T /usr/bin/codesign 2>&1 >/dev/null
+security set-key-partition-list -S apple-tool:,apple: -s -k actions $KEY_CHAIN
 
-# Let's delete the file, we no longer need it
-rm $CERTIFICATE_P12
-
-# Set the partition list (sort of like an access control list)
-security set-key-partition-list -S apple-tool:,apple: -s -k actions $KEYCHAIN
-
-# Echo the identity, just so that we know it worked.
-# This won't display anything secret.
-security find-identity -v -p codesigning
+# remove certs
+rm -fr *.p12
