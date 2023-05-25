@@ -6,7 +6,7 @@ import {
   shell,
 } from 'electron'
 import { is } from 'electron-util'
-import config, { ConfigKey } from './config.js'
+import config, { ConfigKey } from './config'
 
 const repoURL = 'https://github.com/mskelton/chatter'
 
@@ -50,12 +50,12 @@ export function initMenu() {
       label: 'Settings',
       submenu: [
         {
-          checked: config.get(ConfigKey.KeepOnTop),
+          checked: config.get(ConfigKey.StayOnTop),
           click({ checked }) {
-            config.set(ConfigKey.KeepOnTop, checked)
+            config.set(ConfigKey.StayOnTop, checked)
           },
-          id: 'keep-on-top',
-          label: 'Keep Window on Top',
+          id: 'stay-on-top',
+          label: 'Stay On Top',
           type: 'checkbox',
         },
       ],
@@ -119,8 +119,8 @@ export function initMenu() {
     if (item) cb(item)
   }
 
-  config.onDidChange(ConfigKey.KeepOnTop, (value) => {
-    setItem('keep-on-top', (item) => (item.checked = !!value))
+  config.onDidChange(ConfigKey.StayOnTop, (value) => {
+    setItem('stay-on-top', (item) => (item.checked = !!value))
   })
 
   Menu.setApplicationMenu(appMenu)

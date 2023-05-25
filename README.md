@@ -16,15 +16,15 @@ installation process
 
 ## Features
 
-- Toggle to keep open on top of other windows.
+- Toggle to stay on top of other windows.
 - Keyboard shortcuts!
 
 ### Shortcuts
 
-| Shortcut         | Action                                   |
-| ---------------- | ---------------------------------------- |
-| <kbd>cmd+n</kbd> | Start new chat                           |
-| <kbd>cmd+j</kbd> | Toggle keep open on top of other windows |
+| Shortcut         | Action                              |
+| ---------------- | ----------------------------------- |
+| <kbd>cmd+n</kbd> | Start new chat                      |
+| <kbd>cmd+j</kbd> | Toggle stay on top of other windows |
 
 ## Contributing
 

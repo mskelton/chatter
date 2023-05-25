@@ -1,5 +1,5 @@
 import { ipcRenderer } from 'electron'
-import { Shortcuts } from './shortcuts.js'
+import { Shortcuts } from './shortcuts'
 
 function click(element: Node | null) {
   ;(element as HTMLElement)?.click()
@@ -27,7 +27,7 @@ shortcuts.register('n', () => {
 })
 
 shortcuts.register('j', () => {
-  ipcRenderer.send('keep-on-top')
+  ipcRenderer.send('stay-on-top')
 })
 
 shortcuts.listen()
