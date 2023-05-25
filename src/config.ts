@@ -13,18 +13,18 @@ interface LastWindowState {
 }
 
 export enum ConfigKey {
-  KeepOnTop = 'keepOnTop',
   LastWindowState = 'lastWindowState',
+  StayOnTop = 'stayOnTop',
 }
 
 interface ConfigStore {
-  [ConfigKey.KeepOnTop]: boolean
+  [ConfigKey.StayOnTop]: boolean
   [ConfigKey.LastWindowState]: LastWindowState
 }
 
 const config = new Store<ConfigStore>({
   defaults: {
-    [ConfigKey.KeepOnTop]: false,
+    [ConfigKey.StayOnTop]: false,
     [ConfigKey.LastWindowState]: {
       bounds: {
         height: 900,
@@ -39,7 +39,7 @@ const config = new Store<ConfigStore>({
   migrations: {},
   name: is.development ? 'config.dev' : 'config',
   schema: {
-    [ConfigKey.KeepOnTop]: {
+    [ConfigKey.StayOnTop]: {
       type: 'boolean',
     },
     [ConfigKey.LastWindowState]: {
