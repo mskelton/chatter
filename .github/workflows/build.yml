@@ -76,7 +76,7 @@ jobs:
           MACOS_CERT_P12: ${{ secrets.MACOS_CERT_P12 }}
           MACOS_CERT_PASSWORD: ${{ secrets.MACOS_CERT_PASSWORD }}
       - name: Publish app
-        run: yarn electron-forge make --arch=${{ matrix.arch }}
+        run: yarn electron-forge publish --arch=${{ matrix.arch }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           APPLE_ID: ${{ secrets.APPLE_ID }}
