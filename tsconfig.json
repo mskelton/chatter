@@ -1,9 +1,14 @@
 {
   "extends": "@mskelton/tsconfig",
   "compilerOptions": {
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "noEmit": true
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "ES6",
+    "outDir": "dist",
+    "esModuleInterop": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "ts-node": {
+    "transpileOnly": true
+  }
 }
