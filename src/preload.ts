@@ -22,7 +22,7 @@ document.addEventListener('keydown', (event) => {
 
 const shortcuts = new Shortcuts()
 
-shortcuts.register('n', () => {
+shortcuts.register(['n', 't'], () => {
   click(document.querySelector('.sticky > button:last-of-type'))
 })
 

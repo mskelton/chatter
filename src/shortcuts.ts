@@ -1,8 +1,10 @@
 export class Shortcuts {
   #registrations = new Map<string, () => void>()
 
-  register(key: string, callback: () => void) {
-    this.#registrations.set(key, callback)
+  register(keys: string | string[], callback: () => void) {
+    ;(Array.isArray(keys) ? keys : [keys]).forEach((key) => {
+      this.#registrations.set(key, callback)
+    })
   }
 
   listen() {
