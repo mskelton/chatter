@@ -108,6 +108,10 @@ export function initMenu() {
           },
           label: 'Clear Cache and Restart',
         },
+        {
+          label: 'Developer Tools',
+          role: 'toggleDevTools',
+        },
       ],
     })
   }
