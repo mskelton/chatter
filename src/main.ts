@@ -22,7 +22,7 @@ function createWindow() {
     titleBarStyle: 'hiddenInset',
     webPreferences: {
       nodeIntegration: false,
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(__dirname, '../renderer/preload.js'),
     },
     width: lastWindowState.bounds.width,
     x: lastWindowState.bounds.x,
