@@ -68,13 +68,11 @@ jobs:
         run: |
           npm version --no-git-tag-version ${{ needs.release.outputs.version }}
       - name: Add macOS certs
+        uses: mskelton/macos-certs@v1
         if: matrix.os == 'macos-latest'
-        run: |
-          chmod +x ./scripts/add-osx-cert.sh
-          ./scripts/add-osx-cert.sh
         env:
-          MACOS_CERT_P12: ${{ secrets.MACOS_CERT_P12 }}
-          MACOS_CERT_PASSWORD: ${{ secrets.MACOS_CERT_PASSWORD }}
+          CERT_P12: ${{ secrets.MACOS_CERT_P12 }}
+          CERT_PASSWORD: ${{ secrets.MACOS_CERT_PASSWORD }}
       - name: Publish app
         run: yarn electron-forge publish --arch=${{ matrix.arch }}
         env:
