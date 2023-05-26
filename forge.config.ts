@@ -29,7 +29,6 @@ const config: ForgeConfig = {
     new MakerZIP({}, ['darwin']),
     new MakerDMG({
       background: './assets/dmg-background.png',
-      // 'background-color': '#132933',
       contents: (opts) => [
         {
           name: 'Applications',
@@ -39,7 +38,7 @@ const config: ForgeConfig = {
           y: y(85),
         },
         {
-          name: 'Chatter',
+          name: 'Chatter.app',
           path: (opts as { appPath: string }).appPath,
           type: 'file',
           x: loc(42),
