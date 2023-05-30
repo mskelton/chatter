@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, globalShortcut } from 'electron'
 import path from 'node:path'
 import autoUpdate from 'update-electron-app'
 import config, { ConfigKey } from './config'
@@ -61,6 +61,20 @@ function createWindow() {
 app.whenReady().then(() => {
   createWindow()
   initMenu()
+
+  globalShortcut.register('CommandOrControl+Shift+J', () => {
+    if (!win) return
+
+    const isVisible = win.isVisible()
+    config.set(ConfigKey.StayOnTop, !isVisible)
+
+    if (isVisible) {
+      win.hide()
+    } else {
+      win.moveTop()
+      win.show()
+    }
+  })
 })
 
 app.on('activate', () => {
@@ -68,6 +82,8 @@ app.on('activate', () => {
   // clicked and there are no other windows open.
   if (!BrowserWindow.getAllWindows().length) {
     createWindow()
+  } else {
+    win?.show()
   }
 })
 
@@ -78,10 +94,6 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
-})
-
-ipcMain.on('stay-on-top', () => {
-  config.set(ConfigKey.StayOnTop, !config.get(ConfigKey.StayOnTop))
 })
 
 config.onDidChange(ConfigKey.StayOnTop, (value) => {

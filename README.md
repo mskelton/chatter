@@ -21,10 +21,10 @@ installation process
 
 ### Shortcuts
 
-| Shortcut         | Action                              |
-| ---------------- | ----------------------------------- |
-| <kbd>cmd+n</kbd> | Start new chat                      |
-| <kbd>cmd+j</kbd> | Toggle stay on top of other windows |
+| Shortcut               | Action                                       |
+| ---------------------- | -------------------------------------------- |
+| <kbd>cmd+n</kbd>       | Start new chat                               |
+| <kbd>cmd+shift+j</kbd> | Toggle stay on top of other windows (global) |
 
 ## Contributing
 

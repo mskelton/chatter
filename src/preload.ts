@@ -1,4 +1,3 @@
-import { ipcRenderer } from 'electron'
 import { Shortcuts } from './shortcuts'
 
 function click(element: Node | null) {
@@ -24,10 +23,6 @@ const shortcuts = new Shortcuts()
 
 shortcuts.register(['n', 't'], () => {
   click(document.querySelector('.sticky > button:last-of-type'))
-})
-
-shortcuts.register('j', () => {
-  ipcRenderer.send('stay-on-top')
 })
 
 shortcuts.listen()
