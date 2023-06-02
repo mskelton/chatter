@@ -52,11 +52,6 @@ nav[aria-label='Chat history'] {
   {
     padding-block: 0.25rem;
   }
-
-  /* Hide an element which breaks the alignment */
-  form.stretch > div > div:last-child {
-    display: none;
-  }
 }
 
 @media (min-width: 768px) {
