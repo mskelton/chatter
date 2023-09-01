@@ -15,14 +15,14 @@ document.addEventListener('keydown', (event) => {
     !event.shiftKey
   ) {
     event.preventDefault()
-    click(node.nextSibling)
+    click(document.querySelector('[data-testid="send-button"]'))
   }
 })
 
 const shortcuts = new Shortcuts()
 
 shortcuts.register(['n', 't'], () => {
-  click(document.querySelector('.sticky > button:last-of-type'))
+  click(document.querySelector('.sticky.border-b > button:last-of-type'))
 })
 
 shortcuts.listen()
