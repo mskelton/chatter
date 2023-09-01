@@ -9,6 +9,16 @@ div:has(> span > a[href^="https://help.openai.com"]) > span
   display: none;
 }
 
+/* Hide the footer help button */
+.absolute.bottom-5.right-4 {
+  display: none;
+}
+
+/* Hide the recommendations */
+[data-projection-id] {
+  display: none;
+}
+
 /* Fix the side nav padding since the traffic lights overlap */
 nav[aria-label='Chat history'] {
   padding-top: 2.25rem !important;
@@ -16,7 +26,7 @@ nav[aria-label='Chat history'] {
 
 @media (max-width: 767px) {
   /* Update the mobile header elements to fit well in the menu with the mac controls */
-  .sticky {
+  .sticky.border-b {
     padding-top: 0 !important;
     padding-inline: 0.5rem !important;
 
