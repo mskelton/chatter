@@ -15,7 +15,7 @@ div:has(> span > a[href^="https://help.openai.com"]) > span
 }
 
 /* Hide the recommendations */
-[data-projection-id] {
+.grid .btn.btn-neutral.group.w-full {
   display: none;
 }
 
