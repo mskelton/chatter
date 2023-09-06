@@ -13,7 +13,7 @@ function createWindow() {
   const lastWindowState = config.get(ConfigKey.LastWindowState)
 
   win = new BrowserWindow({
-    alwaysOnTop: config.get(ConfigKey.StayOnTop),
+    alwaysOnTop: config.get(ConfigKey.Pinned),
     height: lastWindowState.bounds.height,
     minHeight: 600,
     minWidth: 400,
@@ -45,7 +45,7 @@ function createWindow() {
 
   win.webContents.on('dom-ready', async () => {
     await win.webContents.insertCSS(styles)
-    win.webContents.send('startup', config.get(ConfigKey.StayOnTop))
+    win.webContents.send('startup', config.get(ConfigKey.Pinned))
     win.show()
   })
 
@@ -61,9 +61,9 @@ function createWindow() {
   win.on('move', saveWindowState)
 }
 
-function toggleStayOnTop() {
+function togglePinned() {
   if (!win) return
-  config.set(ConfigKey.StayOnTop, !config.get(ConfigKey.StayOnTop))
+  config.set(ConfigKey.Pinned, !config.get(ConfigKey.Pinned))
 }
 
 // This method will be called when Electron has finished initialization and is
@@ -72,10 +72,9 @@ app.whenReady().then(() => {
   createWindow()
   initMenu()
 
-  globalShortcut.register('CommandOrControl+Shift+J', toggleStayOnTop)
+  globalShortcut.register('CommandOrControl+Shift+J', togglePinned)
+  ipcMain.on('toggle-pinned', togglePinned)
 })
-
-ipcMain.on('toggle-stay-on-top', toggleStayOnTop)
 
 app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the dock icon is
@@ -96,7 +95,7 @@ app.on('window-all-closed', () => {
   }
 })
 
-config.onDidChange(ConfigKey.StayOnTop, (value) => {
+config.onDidChange(ConfigKey.Pinned, (value) => {
   win.setAlwaysOnTop(!!value)
-  win.webContents.send('set-stay-on-top', !!value)
+  win.webContents.send('set-pinned', !!value)
 })

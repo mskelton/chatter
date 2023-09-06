@@ -1,5 +1,5 @@
 import { ipcRenderer as ipc } from 'electron'
-import { pinIcon, pinIconFilled } from './icons'
+import { iconPin, iconPinFilled } from './icons'
 import { Shortcuts } from './shortcuts'
 
 function click(element: Node | null) {
@@ -27,32 +27,36 @@ shortcuts.register(['n', 't'], () => {
   click(document.querySelector('.sticky.border-b > button:last-of-type'))
 })
 
+shortcuts.register('s', () => {
+  // click(document.querySelector('.sticky.border-b > button:last-of-type'))
+})
+
 shortcuts.listen()
 
 ipc.on('startup', (_, isPinned: boolean) => {
   const button = document.createElement('button')
 
   // Set initial state
-  button.innerHTML = isPinned ? pinIconFilled : pinIcon
+  button.innerHTML = isPinned ? iconPinFilled : iconPin
   button.dataset.pinned = isPinned.toString()
 
   // Add the pin button to the header
   const el = document.querySelector('.sticky.border-b > button:last-of-type')
   el?.parentNode?.insertBefore(button, el)
 
-  function setStayOnTop(value: boolean) {
-    button.innerHTML = value ? pinIconFilled : pinIcon
+  function setPinned(value: boolean) {
+    button.innerHTML = value ? iconPinFilled : iconPin
     button.dataset.pinned = value.toString()
   }
 
-  // Toggle stay on top when the button is clicked
+  // Toggle pinned state when the button is clicked
   button.addEventListener('click', () => {
-    setStayOnTop(button.dataset.pinned !== 'true')
-    ipc.send('toggle-stay-on-top')
+    setPinned(button.dataset.pinned !== 'true')
+    ipc.send('toggle-pinned')
   })
 
   // Update the state when the config changes from the main process
-  ipc.on('set-stay-on-top', (_, value: boolean) => {
-    setStayOnTop(value)
+  ipc.on('set-pinned', (_, value: boolean) => {
+    setPinned(value)
   })
 })

@@ -50,11 +50,11 @@ export function initMenu() {
       label: 'Settings',
       submenu: [
         {
-          checked: config.get(ConfigKey.StayOnTop),
+          checked: config.get(ConfigKey.Pinned),
           click({ checked }) {
-            config.set(ConfigKey.StayOnTop, checked)
+            config.set(ConfigKey.Pinned, checked)
           },
-          id: 'stay-on-top',
+          id: 'pinned',
           label: 'Stay On Top',
           type: 'checkbox',
         },
@@ -123,8 +123,8 @@ export function initMenu() {
     if (item) cb(item)
   }
 
-  config.onDidChange(ConfigKey.StayOnTop, (value) => {
-    setItem('stay-on-top', (item) => (item.checked = !!value))
+  config.onDidChange(ConfigKey.Pinned, (value) => {
+    setItem('pinned', (item) => (item.checked = !!value))
   })
 
   Menu.setApplicationMenu(appMenu)

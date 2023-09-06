@@ -17,13 +17,17 @@ installation process
 ## Features
 
 - Toggle to stay on top of other windows.
+- Minimal styles to keep you focused.
 - Keyboard shortcuts!
 
 ### Shortcuts
 
 | Shortcut               | Action                                       |
 | ---------------------- | -------------------------------------------- |
+| <kbd>/</kbd>           | Focus prompt                                 |
 | <kbd>cmd+n</kbd>       | Start new chat                               |
+| <kbd>cmd+k</kbd>       | Switch GPT version                           |
+| <kbd>cmd+s</kbd>       | Toggle sidebar open/closed                   |
 | <kbd>cmd+shift+j</kbd> | Toggle stay on top of other windows (global) |
 
 ## Contributing

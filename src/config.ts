@@ -14,17 +14,17 @@ interface LastWindowState {
 
 export enum ConfigKey {
   LastWindowState = 'lastWindowState',
-  StayOnTop = 'stayOnTop',
+  Pinned = 'pinned',
 }
 
 interface ConfigStore {
-  [ConfigKey.StayOnTop]: boolean
+  [ConfigKey.Pinned]: boolean
   [ConfigKey.LastWindowState]: LastWindowState
 }
 
 const config = new Store<ConfigStore>({
   defaults: {
-    [ConfigKey.StayOnTop]: false,
+    [ConfigKey.Pinned]: false,
     [ConfigKey.LastWindowState]: {
       bounds: {
         height: 900,
@@ -39,7 +39,7 @@ const config = new Store<ConfigStore>({
   migrations: {},
   name: is.development ? 'config.dev' : 'config',
   schema: {
-    [ConfigKey.StayOnTop]: {
+    [ConfigKey.Pinned]: {
       type: 'boolean',
     },
     [ConfigKey.LastWindowState]: {
