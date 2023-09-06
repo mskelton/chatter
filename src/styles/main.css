@@ -29,10 +29,12 @@ nav[aria-label='Chat history'] {
   .sticky.border-b {
     padding-top: 0 !important;
     padding-inline: 0.5rem !important;
+    gap: 8px;
 
     & > button {
       margin-top: 0;
       height: 2.4rem;
+      padding: 0;
 
       & > svg {
         border-radius: 4px;

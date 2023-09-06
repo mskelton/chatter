@@ -1,4 +1,4 @@
-import { app, BrowserWindow, globalShortcut } from 'electron'
+import { app, BrowserWindow, globalShortcut, ipcMain } from 'electron'
 import path from 'node:path'
 import autoUpdate from 'update-electron-app'
 import config, { ConfigKey } from './config'
@@ -37,10 +37,15 @@ function createWindow() {
     win.maximize()
   }
 
+  if (process.env.NODE_ENV === 'development') {
+    win.webContents.openDevTools()
+  }
+
   win.loadURL('https://chat.openai.com')
 
   win.webContents.on('dom-ready', async () => {
     await win.webContents.insertCSS(styles)
+    win.webContents.send('startup', config.get(ConfigKey.StayOnTop))
     win.show()
   })
 
@@ -56,26 +61,21 @@ function createWindow() {
   win.on('move', saveWindowState)
 }
 
+function toggleStayOnTop() {
+  if (!win) return
+  config.set(ConfigKey.StayOnTop, !config.get(ConfigKey.StayOnTop))
+}
+
 // This method will be called when Electron has finished initialization and is
 // ready to create browser windows. Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow()
   initMenu()
 
-  globalShortcut.register('CommandOrControl+Shift+J', () => {
-    if (!win) return
-
-    const isVisible = win.isVisible()
-    config.set(ConfigKey.StayOnTop, !isVisible)
-
-    if (isVisible) {
-      win.hide()
-    } else {
-      win.moveTop()
-      win.show()
-    }
-  })
+  globalShortcut.register('CommandOrControl+Shift+J', toggleStayOnTop)
 })
+
+ipcMain.on('toggle-stay-on-top', toggleStayOnTop)
 
 app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the dock icon is
@@ -98,4 +98,5 @@ app.on('window-all-closed', () => {
 
 config.onDidChange(ConfigKey.StayOnTop, (value) => {
   win.setAlwaysOnTop(!!value)
+  win.webContents.send('set-stay-on-top', !!value)
 })
