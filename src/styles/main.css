@@ -1,22 +1,15 @@
-/* Hide the plus badge */
-h1 > span.bg-yellow-200 {
-  display: none;
-}
-
-/* Hide the footer help text */
-div:has(> span > a[href^="https://help.openai.com"]) > span
-{
-  display: none;
-}
-
-/* Hide the footer help button */
-.absolute.bottom-5.right-4 {
-  display: none;
-}
-
 /* Hide the recommendations */
 .grid .btn.btn-neutral.group.w-full {
   display: none;
+}
+
+/* Hide the "ChatGPT can make mistakes" text */
+div:has(> form #prompt-textarea) > :last-child {
+  padding-block: 0.5rem;
+
+  & > span {
+    display: none;
+  }
 }
 
 /* Fix the side nav padding since the traffic lights overlap */
@@ -57,27 +50,5 @@ nav[aria-label='Chat history'] {
   /* Make the header draggable to move the window */
   html:not([style*='overflow: hidden']) .sticky h1 {
     -webkit-app-region: drag;
-  }
-
-  /* Footer padding since help text is hidden */
-  div:has(> span > a[href^="https://help.openai.com"])
-  {
-    padding-block: 0.25rem;
-  }
-}
-
-@media (min-width: 768px) {
-  /* Larger side nav */
-  div:has(> .w-\[260px\]) {
-    &,
-    & > div {
-      width: 320px !important;
-    }
-  }
-
-  /* Footer padding since help text is hidden */
-  div:has(> span > a[href^="https://help.openai.com"]) > span
-  {
-    padding-block: 0.5rem;
   }
 }
