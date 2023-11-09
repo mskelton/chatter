@@ -55,7 +55,7 @@ jobs:
     needs: release
     strategy:
       matrix:
-        os: [macos-latest]
+        os: [macos-13]
         arch: [x64, arm64]
     runs-on: ${{ matrix.os }}
     permissions:
@@ -69,7 +69,7 @@ jobs:
           npm version --no-git-tag-version ${{ needs.release.outputs.version }}
       - name: Add macOS certs
         uses: mskelton/macos-certs@v1
-        if: matrix.os == 'macos-latest'
+        if: matrix.os == 'macos-13'
         env:
           CERT_P12: ${{ secrets.MACOS_CERT_P12 }}
           CERT_PASSWORD: ${{ secrets.MACOS_CERT_PASSWORD }}
