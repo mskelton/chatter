@@ -4,7 +4,7 @@ import path from 'node:path'
 
 export default async function removeLanguages(
   buildPath: string,
-  regex: RegExp
+  regex: RegExp,
 ) {
   const cwd = path.join(buildPath, '../..')
   const lproj = await glob('**/*.lproj', { cwd })

@@ -13,7 +13,8 @@
     "dev": "electron-forge start",
     "lint": "eslint .",
     "ts": "tsc",
-    "format": "prettier --write .",
+    "fmt": "prettier --write .",
+    "fmt:check": "prettier --check .",
     "print-version": "printf $npm_package_version",
     "package": "electron-forge package",
     "make": "electron-forge make"

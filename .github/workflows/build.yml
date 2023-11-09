@@ -13,7 +13,7 @@ jobs:
       - name: Lint
         run: yarn lint
       - name: Code style
-        run: yarn prettier --check .
+        run: yarn fmt:check
   typecheck:
     name: Type check
     runs-on: ubuntu-latest
