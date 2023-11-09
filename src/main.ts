@@ -1,11 +1,11 @@
 import { app, BrowserWindow, globalShortcut, ipcMain } from 'electron'
 import path from 'node:path'
-import autoUpdate from 'update-electron-app'
+import { updateElectronApp } from 'update-electron-app'
 import config, { ConfigKey } from './config'
 import { initMenu } from './menu'
 import styles from './styles/main.css'
 
-autoUpdate()
+updateElectronApp()
 
 let win: BrowserWindow
 
