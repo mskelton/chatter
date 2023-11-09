@@ -53,7 +53,7 @@ jobs:
     name: Publish Electron app
     strategy:
       matrix:
-        os: [macos-11]
+        os: [macos-latest]
         arch: [x64, arm64]
     runs-on: ${{ matrix.os }}
     permissions:
@@ -67,10 +67,13 @@ jobs:
           npm version --no-git-tag-version 1.7.3
       - name: Add macOS certs
         uses: mskelton/macos-certs@v1
-        if: matrix.os == 'macos-11'
+        if: matrix.os == 'macos-latest'
         env:
           CERT_P12: ${{ secrets.MACOS_CERT_P12 }}
           CERT_PASSWORD: ${{ secrets.MACOS_CERT_PASSWORD }}
+      # https://github.com/LinusU/node-appdmg/issues/234
+      - name: Install distutils
+        run: python3 -m pip install setuptools
       - name: Publish app
         run: yarn electron-forge make --arch=${{ matrix.arch }}
         env:
