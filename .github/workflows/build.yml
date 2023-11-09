@@ -51,7 +51,6 @@ jobs:
           echo "version=$version" >> "$GITHUB_OUTPUT"
   publish:
     name: Publish Electron app
-    needs: release
     strategy:
       matrix:
         os: [macos-13]
