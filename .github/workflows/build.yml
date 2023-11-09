@@ -51,7 +51,6 @@ jobs:
           echo "version=$version" >> "$GITHUB_OUTPUT"
   publish:
     name: Publish Electron app
-    if: ${{ needs.release.outputs.version != '0.0.1-semantically-released' }}
     needs: release
     strategy:
       matrix:
@@ -66,7 +65,7 @@ jobs:
           node-version: '18.x'
       - name: Update manifest version
         run: |
-          npm version --no-git-tag-version ${{ needs.release.outputs.version }}
+          npm version --no-git-tag-version 1.7.3
       - name: Add macOS certs
         uses: mskelton/macos-certs@v1
         if: matrix.os == 'macos-13'
@@ -74,7 +73,7 @@ jobs:
           CERT_P12: ${{ secrets.MACOS_CERT_P12 }}
           CERT_PASSWORD: ${{ secrets.MACOS_CERT_PASSWORD }}
       - name: Publish app
-        run: yarn electron-forge publish --arch=${{ matrix.arch }}
+        run: yarn electron-forge make --arch=${{ matrix.arch }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           APPLE_ID: ${{ secrets.APPLE_ID }}
