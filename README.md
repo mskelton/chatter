@@ -3,7 +3,7 @@
   <p>ChatGPT desktop app.</p>
   <img
     alt="Screenshot"
-    src="https://github.com/mskelton/chatter/assets/25914066/c7ad4c7d-0bed-43ee-bb57-6205dac91434"
+    src="https://github.com/mskelton/chatter/assets/25914066/f7c8c938-47da-4847-84b5-07338744ad64"
     width="400"
   />
 </div>
