@@ -5,7 +5,7 @@
 
 /* Hide the "ChatGPT can make mistakes" text */
 div:has(> form #prompt-textarea) > :last-child {
-  padding-block: 0.5rem;
+  padding-block: 0.25rem;
 
   & > span {
     display: none;
