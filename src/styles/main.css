@@ -20,9 +20,18 @@ nav[aria-label='Chat history'] {
 @media (max-width: 767px) {
   /* Update the mobile header elements to fit well in the menu with the mac controls */
   .sticky.border-b {
+    -webkit-app-region: drag;
     padding-top: 0 !important;
     padding-inline: 0.5rem !important;
     gap: 8px;
+
+    [aria-haspopup='menu'] {
+      padding-block: 0;
+    }
+
+    & > * {
+      -webkit-app-region: no-drag;
+    }
 
     & > button {
       margin-top: 0;
@@ -42,13 +51,8 @@ nav[aria-label='Chat history'] {
       }
 
       &:first-child {
-        margin-left: 4rem;
+        margin-left: 5rem;
       }
     }
-  }
-
-  /* Make the header draggable to move the window */
-  html:not([style*='overflow: hidden']) .sticky h1 {
-    -webkit-app-region: drag;
   }
 }

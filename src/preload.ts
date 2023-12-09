@@ -4,9 +4,11 @@ import { Shortcuts } from './shortcuts'
 
 const selectors = {
   header: '.sticky.border-b',
+  newChat: '.sticky.border-b > .bottom-0 > button',
+  version: '.sticky.border-b > [aria-haspopup="menu"]',
 }
 
-function click(element: Node | null) {
+function click(element: Node | null | undefined) {
   ;(element as HTMLElement)?.click()
 }
 
@@ -25,19 +27,23 @@ document.addEventListener('keydown', (event) => {
   }
 })
 
+function select(selector: string, text: string) {
+  const elements = [...document.querySelectorAll(selector)]
+  return elements.find((el) => el.textContent?.trim().includes(text))
+}
+
 const shortcuts = new Shortcuts()
 
 shortcuts.register(['n', 't'], () => {
-  click(document.querySelector(`${selectors.header} > button:last-of-type`))
+  click(document.querySelector(selectors.newChat))
 })
 
 shortcuts.register('s', () => {
-  click(document.querySelector(`${selectors.header} > button:first-of-type`))
+  click(select(`${selectors.header} button`, 'Open sidebar'))
 })
 
 shortcuts.register('k', () => {
-  const selector = 'button[aria-haspopup="menu"]:has(> .text-gray-500)'
-  click(document.querySelector(selector))
+  click(select(selectors.version, 'ChatGPT'))
 })
 
 shortcuts.listen()
@@ -64,7 +70,7 @@ ipc.on('startup', (_, isPinned: boolean) => {
   button.dataset.pinned = isPinned.toString()
 
   // Add the pin button to the header
-  const el = document.querySelector(`${selectors.header} > button:last-of-type`)
+  const el = document.querySelector(selectors.newChat)
   el?.parentNode?.insertBefore(button, el)
 
   function setPinned(value: boolean) {
