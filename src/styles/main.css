@@ -33,6 +33,11 @@ nav[aria-label='Chat history'] {
       -webkit-app-region: no-drag;
     }
 
+    & :has(> .header-button) {
+      gap: 0.5rem;
+    }
+
+    & .header-button,
     & > button {
       margin-top: 0;
       height: 2.4rem;
@@ -52,6 +57,10 @@ nav[aria-label='Chat history'] {
 
       &:first-child {
         margin-left: 5rem;
+      }
+
+      &:last-child {
+        margin-right: 0.5rem;
       }
     }
   }
