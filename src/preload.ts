@@ -4,7 +4,7 @@ import { Shortcuts } from './shortcuts'
 
 const selectors = {
   header: '.sticky.border-b',
-  newChat: '.sticky.border-b > .bottom-0 > button',
+  newChat: '.sticky.border-b > .bottom-0 > button:last-child',
   version: '.sticky.border-b > [aria-haspopup="menu"]',
 }
 
@@ -68,9 +68,11 @@ ipc.on('startup', (_, isPinned: boolean) => {
   // Set initial state
   button.innerHTML = isPinned ? iconPinFilled : iconPin
   button.dataset.pinned = isPinned.toString()
+  button.classList.add('header-button')
 
   // Add the pin button to the header
   const el = document.querySelector(selectors.newChat)
+  el?.classList.add('header-button')
   el?.parentNode?.insertBefore(button, el)
 
   function setPinned(value: boolean) {
