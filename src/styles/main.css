@@ -1,10 +1,10 @@
 /* Hide the recommendations */
-.grid .btn.btn-neutral.group.w-full {
+.grid .btn.btn-secondary.group.w-full {
   display: none;
 }
 
 /* Hide the "ChatGPT can make mistakes" text */
-div:has(> form #prompt-textarea) > :last-child {
+.juice\:w-full > :last-child {
   padding-block: 0.25rem;
 
   & > span {
