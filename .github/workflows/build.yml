@@ -63,7 +63,7 @@ jobs:
     steps:
       # https://github.com/LinusU/node-appdmg/issues/234
       - name: Install distutils
-        run: python3 -m pip install setuptools
+        run: python3 -m pip install setuptools --break-system-packages
       - uses: mskelton/setup-yarn@v2
         with:
           node-version: '20.x'
