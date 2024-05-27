@@ -8,6 +8,10 @@
   />
 </div>
 
+## Project Archived
+
+ChatGPT now supports a native desktop app, so this app is no longer maintained.
+
 ## Installation
 
 Visit the [releases page](https://github.com/mskelton/chatter/releases/latest)
